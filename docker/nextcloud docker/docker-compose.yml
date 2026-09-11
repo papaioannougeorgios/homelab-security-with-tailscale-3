@@ -1,0 +1,34 @@
+version: "3.8"
+
+services:
+	db:
+		image: mariadb:10.11
+		restart: unless-stopped
+		command: --transaction-isolation=READ-COMMITTED -binlog-format=ROW
+		volumes:
+			- db_data:/var/lib/mysql
+		environment:
+			- MYSQL_ROOT_PASSWORD=YOUR_OWN_PASSWORD
+			- MYSQL_PASSWORD=YOUR_OWN_PASSWORD
+			- MYSQL_DATABASE=nextcloud
+			- MYSQL_USER=nextcloud
+	
+	app:
+		image: nextcloud:latest
+		restart: unless-stopped
+		ports:
+      			- "127.0.0.1:8080:80"
+		links:
+			- db
+		volumes:
+			- nextcloud_data:/var/www/html
+			- /mnt/cloud-storage:/var/www/html/data
+		environment:
+			- MYSQL_PASSWORD=YOUR_OWN_PASSWORD
+			- MYSQL_DATABASE=nextcloud
+			- MYSQL_USER=nextcloud
+			- MYSQL_HOST=db
+
+volumes:
+	db_data:
+	nextcloud_data:

@@ -1,0 +1,14 @@
+version: "3"
+services:
+	adguardhome:
+		container_name: adguardhome
+		image: adguard/adguardhome:latest
+		restart: unless-stopped
+		ports:
+    			- "127.0.0.1:80:80/tcp"
+      			- "127.0.0.1:3000:3000/tcp"
+    			- "100.X.X.X:53:53/tcp"
+     			- "100.X.X.X:53:53/udp"
+		volumes:
+			- './workdir:/opt/adguardhome/work'
+			- './confdir:/opt/adguardhome/conf'
