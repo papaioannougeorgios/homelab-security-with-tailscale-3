@@ -2,4 +2,4 @@ Homelabbing is great, but without proper security, your services are vulnerable 
 
 To prevent that, we're going to be running our services with HTTPS using Tailscale.
 
-I have a step by step guide on how I set this up in ```/docs/SETUP.md```. My hardware, and software remain the same from my previous repositories.
+I have a step by step guide on how I set this up in ```/docs/SETUP.md```.
